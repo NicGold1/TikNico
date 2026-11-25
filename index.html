@@ -1,0 +1,334 @@
+```html
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nico Afacio — Biodata Minimalis</title>
+    <!-- Memuat Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Memuat Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Memuat Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-neutral-50 text-neutral-800 dark:bg-neutral-950 dark:text-neutral-200 transition-colors duration-300 font-sans antialiased selection:bg-neutral-900 selection:text-white dark:selection:bg-white dark:selection:text-neutral-900">
+
+    <!-- Notifikasi Toast Minimalis -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-16 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 px-4 py-2.5 rounded-xl shadow-lg flex items-center gap-2.5 text-xs font-medium">
+            <i data-lucide="check" class="w-4 h-4 text-emerald-400 dark:text-emerald-600"></i>
+            <span id="toast-message">Notifikasi</span>
+        </div>
+    </div>
+
+    <!-- Header Minimalis -->
+    <header class="max-w-3xl mx-auto px-6 pt-8 pb-4 flex items-center justify-between">
+        <div class="flex items-center gap-2 text-sm font-semibold tracking-tight text-neutral-900 dark:text-white">
+            <span class="w-2 h-2 rounded-full bg-neutral-900 dark:bg-white"></span>
+            <span>NICO AFACIO</span>
+        </div>
+        <button id="theme-toggle" aria-label="Ubah Tema" class="p-2 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
+            <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+            <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+    </header>
+
+    <!-- Kontainer Utama (Single Column Clean Layout) -->
+    <main class="max-w-3xl mx-auto px-6 py-6 space-y-10">
+
+        <!-- PROFIL UTAMA & SLOT FOTO (jpg.1) -->
+        <section class="bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 rounded-3xl p-6 sm:p-8 shadow-xs">
+            <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8">
+                
+                <!-- Tempat Foto (1.jpeg) -->
+                <div class="shrink-0">
+                    <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
+                        <!-- Gambar mengarah ke 1.jpeg dengan fallback placeholder -->
+                        <img 
+                            id="profile-photo" 
+                            src="1.jpeg" 
+                            alt="Foto Nico Afacio" 
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x400/f5f5f5/737373?text=1.jpeg';"
+                            class="w-full h-full object-cover"
+                        >
+                    </div>
+                </div>
+
+                <!-- Ringkasan Profil -->
+                <div class="flex-1 text-center sm:text-left space-y-3">
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 text-xs font-medium mb-2">
+                            <span>Kelas XI (SMA 3)</span>
+                            <span>•</span>
+                            <span>SMAS Damai</span>
+                        </div>
+                        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">
+                            Nico Afacio
+                        </h1>
+                        <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">
+                            Panggilan: <span class="text-neutral-800 dark:text-neutral-200 font-medium">Nic / Nico</span>
+                        </p>
+                    </div>
+
+                    <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                        Pelajar dengan minat dan bakat di bidang <strong class="font-semibold text-neutral-900 dark:text-white">IT & Ekonomi (Fintech)</strong>. Menyukai pembelajaran ekonomi, eksplorasi dunia digital, membaca buku, dan bermain Minecraft.
+                    </p>
+
+                    <!-- Aksi Cepat -->
+                    <div class="pt-1 flex flex-wrap items-center justify-center sm:justify-start gap-2.5">
+                        <button onclick="copyPhone()" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 text-xs font-medium hover:opacity-90 transition-opacity active:scale-95">
+                            <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+                            <span>089670101122</span>
+                            <i data-lucide="copy" class="w-3 h-3 opacity-70"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INFORMASI BIODATA (TABEL RAPI & MINIMALIS) -->
+        <section class="space-y-4">
+            <div class="flex items-center justify-between px-1">
+                <h2 class="text-xs font-semibold uppercase tracking-wider text-neutral-400">Informasi Pribadi</h2>
+                <span id="age-badge" class="text-xs font-medium text-neutral-500 dark:text-neutral-400"></span>
+            </div>
+
+            <div class="bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 rounded-3xl divide-y divide-neutral-100 dark:divide-neutral-800/80 overflow-hidden">
+                
+                <div class="px-6 py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
+                    <span class="text-xs font-medium text-neutral-400">Nama Lengkap</span>
+                    <span class="text-sm font-medium text-neutral-900 dark:text-white">Nico Afacio</span>
+                </div>
+
+                <div class="px-6 py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
+                    <span class="text-xs font-medium text-neutral-400">Nama Panggilan</span>
+                    <span class="text-sm font-medium text-neutral-900 dark:text-white">Nic / Nico</span>
+                </div>
+
+                <div class="px-6 py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
+                    <span class="text-xs font-medium text-neutral-400">Tempat, Tanggal Lahir</span>
+                    <span class="text-sm font-medium text-neutral-900 dark:text-white">Jakarta, 9 April 2010 <span class="text-neutral-400 font-normal">(09-04-2010)</span></span>
+                </div>
+
+                <div class="px-6 py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
+                    <span class="text-xs font-medium text-neutral-400">Jenis Kelamin</span>
+                    <span class="text-sm font-medium text-neutral-900 dark:text-white">Laki-Laki</span>
+                </div>
+
+                <div class="px-6 py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
+                    <span class="text-xs font-medium text-neutral-400">Agama</span>
+                    <span class="text-sm font-medium text-neutral-900 dark:text-white">Kristen</span>
+                </div>
+
+                <div class="px-6 py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
+                    <span class="text-xs font-medium text-neutral-400">Pendidikan</span>
+                    <span class="text-sm font-medium text-neutral-900 dark:text-white">Kelas XI (SMA 3) — SMAS Damai</span>
+                </div>
+
+                <div onclick="copyPhone()" class="cursor-pointer px-6 py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 hover:bg-neutral-50 dark:hover:bg-neutral-800/40 transition-colors group">
+                    <span class="text-xs font-medium text-neutral-400">Nomor Telepon</span>
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm font-medium text-neutral-900 dark:text-white">089670101122</span>
+                        <span class="text-[11px] text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">(Klik untuk salin)</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- MINAT, AKADEMIK & KESUKAAN (INTERAKTIF TAB) -->
+        <section class="space-y-4">
+            <div class="flex items-center justify-between px-1">
+                <h2 class="text-xs font-semibold uppercase tracking-wider text-neutral-400">Minat & Kesukaan</h2>
+                
+                <!-- Filter Minimalis -->
+                <div class="flex gap-1 bg-neutral-200/60 dark:bg-neutral-800/80 p-1 rounded-xl">
+                    <button onclick="filterItems('all', this)" class="tab-btn px-3 py-1 rounded-lg text-xs font-medium bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white shadow-2xs transition-all">Semua</button>
+                    <button onclick="filterItems('akademik', this)" class="tab-btn px-3 py-1 rounded-lg text-xs font-medium text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition-all">Akademik</button>
+                    <button onclick="filterItems('hobi', this)" class="tab-btn px-3 py-1 rounded-lg text-xs font-medium text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition-all">Hobi & Hiburan</button>
+                    <button onclick="filterItems('kuliner', this)" class="tab-btn px-3 py-1 rounded-lg text-xs font-medium text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition-all">Kuliner</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                
+                <!-- Minat Bakat -->
+                <div data-group="akademik" class="item-card p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-neutral-400">Minat & Bakat</span>
+                        <i data-lucide="cpu" class="w-4 h-4 text-neutral-400"></i>
+                    </div>
+                    <p class="text-base font-semibold text-neutral-900 dark:text-white">IT / Ekonomi (Fintech)</p>
+                    <p class="text-xs text-neutral-500">Fokus pada inovasi teknologi keuangan.</p>
+                </div>
+
+                <!-- Pelajaran Kesukaan -->
+                <div data-group="akademik" class="item-card p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-neutral-400">Pelajaran Kesukaan</span>
+                        <i data-lucide="trending-up" class="w-4 h-4 text-neutral-400"></i>
+                    </div>
+                    <p class="text-base font-semibold text-neutral-900 dark:text-white">Ekonomi</p>
+                    <p class="text-xs text-neutral-500">Analisis pasar, finansial, dan bisnis.</p>
+                </div>
+
+                <!-- Hobi -->
+                <div data-group="hobi" class="item-card p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-neutral-400">Hobi</span>
+                        <i data-lucide="book-open" class="w-4 h-4 text-neutral-400"></i>
+                    </div>
+                    <p class="text-base font-semibold text-neutral-900 dark:text-white">Main Game & Baca Buku</p>
+                    <p class="text-xs text-neutral-500">Menyeimbangkan hiburan dan literasi.</p>
+                </div>
+
+                <!-- Game Kesukaan -->
+                <div data-group="hobi" class="item-card p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-neutral-400">Game Kesukaan</span>
+                        <i data-lucide="box" class="w-4 h-4 text-neutral-400"></i>
+                    </div>
+                    <p class="text-base font-semibold text-neutral-900 dark:text-white">Minecraft</p>
+                    <p class="text-xs text-neutral-500">Eksplorasi & kreativitas dunia sandbox.</p>
+                </div>
+
+                <!-- Genre Musik -->
+                <div data-group="hobi" class="item-card p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-neutral-400">Genre Musik Kesukaan</span>
+                        <i data-lucide="music" class="w-4 h-4 text-neutral-400"></i>
+                    </div>
+                    <p class="text-base font-semibold text-neutral-900 dark:text-white">Musik Pop</p>
+                    <p class="text-xs text-neutral-500">Easy-listening untuk menemani aktivitas.</p>
+                </div>
+
+                <!-- Genre Film -->
+                <div data-group="hobi" class="item-card p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-neutral-400">Genre Film Kesukaan</span>
+                        <i data-lucide="film" class="w-4 h-4 text-neutral-400"></i>
+                    </div>
+                    <p class="text-base font-semibold text-neutral-900 dark:text-white">Horror, Action, Romance, Mystery</p>
+                    <p class="text-xs text-neutral-500">Cerita penuh teka-teki, aksi, dan emosi.</p>
+                </div>
+
+                <!-- Makanan Kesukaan -->
+                <div data-group="kuliner" class="item-card p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-neutral-400">Makanan Kesukaan</span>
+                        <i data-lucide="utensils" class="w-4 h-4 text-neutral-400"></i>
+                    </div>
+                    <p class="text-base font-semibold text-neutral-900 dark:text-white">Ikan Asam Pedas</p>
+                    <p class="text-xs text-neutral-500">Cita rasa segar, gurih, dan pedas.</p>
+                </div>
+
+                <!-- Minuman Kesukaan -->
+                <div data-group="kuliner" class="item-card p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-neutral-400">Minuman Kesukaan</span>
+                        <i data-lucide="cup-soda" class="w-4 h-4 text-neutral-400"></i>
+                    </div>
+                    <p class="text-base font-semibold text-neutral-900 dark:text-white">Es Teh Manis</p>
+                    <p class="text-xs text-neutral-500">Segar dan klasik di segala suasana.</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Minimalis -->
+    <footer class="max-w-3xl mx-auto px-6 py-8 mt-4 border-t border-neutral-200/60 dark:border-neutral-800/60 flex items-center justify-between text-xs text-neutral-400">
+        <span>© 2026 Nico Afacio</span>
+        <span>SMAS Damai • Jakarta</span>
+    </footer>
+
+    <!-- Script Interaktif -->
+    <script>
+        // Inisialisasi ikon Lucide
+        lucide.createIcons();
+
+        // Fungsi Notifikasi Toast
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').textContent = msg;
+            toast.classList.remove('translate-y-16', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.add('translate-y-16', 'opacity-0');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 2500);
+        }
+
+        // Salin Nomor Telepon
+        function copyPhone() {
+            const temp = document.createElement("input");
+            temp.value = "089670101122";
+            document.body.appendChild(temp);
+            temp.select();
+            try {
+                document.execCommand("copy");
+                showToast("Nomor telepon 089670101122 disalin");
+            } catch (e) {
+                showToast("Gagal menyalin nomor");
+            }
+            document.body.removeChild(temp);
+        }
+
+        // Hitung Umur Otomatis (9 April 2010)
+        (function calculateAge() {
+            const birth = new Date(2010, 3, 9);
+            const now = new Date();
+            let age = now.getFullYear() - birth.getFullYear();
+            const m = now.getMonth() - birth.getMonth();
+            if (m < 0 || (m === 0 && now.getDate() < birth.getDate())) {
+                age--;
+            }
+            document.getElementById('age-badge').textContent = `${age} Tahun`;
+        })();
+
+        // Filter Kategori Minat & Kesukaan
+        function filterItems(group, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.classList.remove('bg-white', 'dark:bg-neutral-900', 'text-neutral-900', 'dark:text-white', 'shadow-2xs');
+                b.classList.add('text-neutral-500');
+            });
+            btn.classList.add('bg-white', 'dark:bg-neutral-900', 'text-neutral-900', 'dark:text-white', 'shadow-2xs');
+            btn.classList.remove('text-neutral-500');
+
+            document.querySelectorAll('.item-card').forEach(card => {
+                if (group === 'all' || card.dataset.group === group) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Toggle Tema Terang / Gelap
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            html.classList.add('dark');
+        }
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            showToast(html.classList.contains('dark') ? "Mode Gelap" : "Mode Terang");
+        });
+    </script>
+</body>
+</html>
+```
